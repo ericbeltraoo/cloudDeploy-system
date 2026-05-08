@@ -18,8 +18,6 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Infraestrutura infra1 = new Infraestrutura();
         Infraestrutura infra2 = new Infraestrutura();
-        Aplicativo app = new Aplicativo();
-        Departamento departamento = new Departamento();
 
         System.out.println("\n-- Servidor 1 --\n");
         System.out.println("Digite o codigo de identificação do servidor 1: ");
@@ -49,27 +47,31 @@ public class Main {
 
         System.out.println("\n-- Aplicativo --\n");
         System.out.println("Digite o nome do aplicativo: ");
-        app.nome = input.nextLine();
+        String tempNome = input.nextLine();
 
         System.out.println("Digite a quantidade de memória ram necessária para rodar o aplicativo no servidor: ");
-        app.memoriaRamNecessaria = input.nextInt();
+        int tempMemoriaRamNecessaria = input.nextInt();
         input.nextLine();
 
         System.out.println("Digite o armazenamento necessário para rodar o aplicativo no servidor: ");
-        app.armazenamentoNecessario = input.nextDouble();
+        double tempArmazenamentoNecessario = input.nextDouble();
         input.nextLine();
 
         System.out.println("Digite a previsão de faturamento mensal do aplicativo: ");
-        app.previsaoFaturamentoMensal = input.nextDouble();
+        double tempPrevisaoFaturamentoMensal = input.nextDouble();
         input.nextLine();
+
+        Aplicativo app = new Aplicativo(tempNome,tempMemoriaRamNecessaria, tempArmazenamentoNecessario, tempPrevisaoFaturamentoMensal);
 
         System.out.println("\n-- Departamento --\n");
         System.out.println("Digite o nome do departamento: ");
-        departamento.nome = input.nextLine();
+        String tempNomeDep = input.nextLine();
 
         System.out.println("Digite o orçamento total disponível para infraestrutura: ");
-        departamento.orcamentoTotalInfra = input.nextDouble();
+        double tempOrcamentoTotalInfra = input.nextDouble();
         input.nextLine();
+
+        Departamento departamento = new Departamento(tempNomeDep, tempOrcamentoTotalInfra);
 
         double custoAdicionalSeguranca = Calculos.calculoAdicionalSeguranca(app.memoriaRamNecessaria, app.armazenamentoNecessario);
         boolean verificacaoCustoDeploy = Calculos.verificacaoCustoDeploy(app.previsaoFaturamentoMensal, app.memoriaRamNecessaria , app.armazenamentoNecessario);
